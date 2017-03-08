@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS messages;
+
+DROP TABLE IF EXISTS feedbacks;
+
+DROP TABLE IF EXISTS events;
+
+DROP TABLE IF EXISTS user_group;
+
+DROP TABLE IF EXISTS ugroups;
+
+DROP TABLE IF EXISTS user_details;
+
+DROP TABLE IF EXISTS chef_details;
+
+DROP TABLE IF EXISTS users;
+
+DROP TABLE IF EXISTS cities;
+
+DROP TABLE IF EXISTS regions;
