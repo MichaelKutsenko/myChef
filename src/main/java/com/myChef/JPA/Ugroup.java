@@ -45,11 +45,7 @@ public class Ugroup {
         this.description = description;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_group", schema = "my_chef_db",
-            joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "group_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false))
+    @ManyToMany(mappedBy = "ugroups", cascade = CascadeType.DETACH)
     public List<User> getUsers() {
         return users;
     }
@@ -78,5 +74,11 @@ public class Ugroup {
         result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    public void addUser(User user){
+        if (!users.contains(user)){
+            users.add(user);
+        }
     }
 }

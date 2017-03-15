@@ -16,9 +16,9 @@ public class UserDetails {
     private String lastName;
     private String phone;
     private Date lastOnline;
-    private Integer grade;
-    private Integer gradeCounter;
-//    private boolean isChef;
+    private double grade;
+    private int gradeCounter;
+    private boolean isChef;
     private User user;
     private City city;
 
@@ -79,34 +79,34 @@ public class UserDetails {
 
     @Basic
     @Column(name = "grade")
-    public Integer getGrade() {
+    public double getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(double grade) {
         this.grade = grade;
     }
 
     @Basic
     @Column(name = "grade_counter")
-    public Integer getGradeCounter() {
+    public int getGradeCounter() {
         return gradeCounter;
     }
 
-    public void setGradeCounter(Integer gradeCounter) {
+    public void setGradeCounter(int gradeCounter) {
         this.gradeCounter = gradeCounter;
     }
 
-//    @Basic
-//    @Column(name = "is_chef")
-//    public boolean isChef() {
-//        return isChef;
-//    }
-//
-//
-//    public void setChef(boolean chef) {
-//        isChef = chef;
-//    }
+    @Basic
+    @Column(name = "is_chef")
+    public boolean isChef() {
+        return isChef;
+    }
+
+
+    public void setChef(boolean chef) {
+        isChef = chef;
+    }
 
     @OneToMany(mappedBy = "user")
     public List<Event> getEvents() {
@@ -172,13 +172,15 @@ public class UserDetails {
         UserDetails that = (UserDetails) o;
 
         if (userId != that.userId) return false;
-//        if (isChef != that.isChef) return false;
+        if (isChef != that.isChef) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         if (lastOnline != null ? !lastOnline.equals(that.lastOnline) : that.lastOnline != null) return false;
-        if (grade != null ? !grade.equals(that.grade) : that.grade != null) return false;
-        if (gradeCounter != null ? !gradeCounter.equals(that.gradeCounter) : that.gradeCounter != null) return false;
+//        if (grade != null ? !grade.equals(that.grade) : that.grade != null) return false;
+//        if (gradeCounter != null ? !gradeCounter.equals(that.gradeCounter) : that.gradeCounter != null) return false;
+        if (Double.compare(that.grade, grade) != 0) return false;
+        if (gradeCounter != that.gradeCounter) return false;
 //        if (isChef != null ? !isChef.equals(that.isChef) : that.isChef != null)
 //            return false;
 
@@ -192,10 +194,13 @@ public class UserDetails {
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (lastOnline != null ? lastOnline.hashCode() : 0);
-        result = 31 * result + (grade != null ? grade.hashCode() : 0);
-        result = 31 * result + (gradeCounter != null ? gradeCounter.hashCode() : 0);
+//        result = 31 * result + (grade != null ? grade.hashCode() : 0);
+        long temp = Double.doubleToLongBits(grade);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+//        result = 31 * result + (gradeCounter != null ? gradeCounter.hashCode() : 0);
+        result = 31 * result + gradeCounter;
 //        result = 31 * result + (discriminator != null ? discriminator.hashCode() : 0);
-//        result = 31 * result + (isChef ? 1 : 0);
+        result = 31 * result + (isChef ? 1 : 0);
         return result;
     }
 }

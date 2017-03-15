@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS users (
   user_name  VARCHAR(20) NOT NULL,
   email      VARCHAR(20) NOT NULL,
   pswrd_hash VARCHAR(64) NOT NULL,
-  is_chef    BOOLEAN     NOT NULL DEFAULT TRUE,
+#   is_chef    BOOLEAN     NOT NULL DEFAULT TRUE,
   PRIMARY KEY (user_id)
 )ENGINE InnoDB;
 
@@ -34,12 +34,12 @@ CREATE TABLE IF NOT EXISTS user_details (
   user_id       BIGINT      NOT NULL,
   city_id       BIGINT      NOT NULL,
   first_name    VARCHAR(64) NOT NULL,
-  last_name     VARCHAR(64)          DEFAULT NULL,
+  last_name     VARCHAR(64) NOT NULL,
   phone         VARCHAR(64)          DEFAULT NULL,
   last_online   DATE                 DEFAULT NULL,
-  grade         INT                  DEFAULT NULL,
-  grade_counter INT                  DEFAULT NULL,
-#   is_chef BOOLEAN     NOT NULL DEFAULT TRUE,
+  grade         DOUBLE               DEFAULT 0,
+  grade_counter INT                  DEFAULT 0,
+  is_chef       BOOLEAN     NOT NULL DEFAULT FALSE,
   PRIMARY KEY (user_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id),
   FOREIGN KEY (city_id) REFERENCES cities (city_id)

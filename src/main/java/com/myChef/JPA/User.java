@@ -15,7 +15,7 @@ public class User {
     private String email;
     private String pswrdHash;
     private UserDetails userDetails;
-    private boolean isChef;
+//    private boolean isChef;
     private ChefDetails chefDetails;
     private List<Ugroup> ugroups = new ArrayList<>();
 
@@ -65,18 +65,18 @@ public class User {
         this.pswrdHash = pswrdHash;
     }
 
-    @Basic
-    @Column(name = "is_chef")
-    public boolean isChef() {
-        return isChef;
-    }
+//    @Basic
+//    @Column(name = "is_chef")
+//    public boolean isChef() {
+//        return isChef;
+//    }
+//
+//
+//    public void setChef(boolean chef) {
+//        isChef = chef;
+//    }
 
-
-    public void setChef(boolean chef) {
-        isChef = chef;
-    }
-
-    @OneToOne(mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     public ChefDetails getChefDetails() {
         return chefDetails;
     }
@@ -121,7 +121,7 @@ public class User {
 //        this.messages = messages;
 //    }
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     public UserDetails getUserDetails() {
         return userDetails;
     }
@@ -130,7 +130,10 @@ public class User {
         this.userDetails = userDetails;
     }
 
-    @ManyToMany(mappedBy = "users")
+    @JoinTable(name = "user_group",
+            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = { @JoinColumn(name = "group_id", referencedColumnName = "group_id")})
+    @ManyToMany(cascade = CascadeType.DETACH)
     public List<Ugroup> getUgroups() {
         return ugroups;
     }
@@ -147,7 +150,7 @@ public class User {
         User user = (User) o;
 
         if (userId != user.userId) return false;
-        if (isChef != user.isChef) return false;
+//        if (isChef != user.isChef) return false;
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (pswrdHash != null ? !pswrdHash.equals(user.pswrdHash) : user.pswrdHash != null) return false;
@@ -161,7 +164,19 @@ public class User {
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (pswrdHash != null ? pswrdHash.hashCode() : 0);
-        result = 31 * result + (isChef ? 1 : 0);
+//        result = 31 * result + (isChef ? 1 : 0);
         return result;
     }
+
+    public void addGroup (Ugroup group) {
+        if (!ugroups.contains(group)){
+            ugroups.add(group);
+        }
+    }
+
+    public void deleteGroup(Ugroup group) {
+        group.getUsers().remove(this);
+        ugroups.remove(group);
+    }
+
 }

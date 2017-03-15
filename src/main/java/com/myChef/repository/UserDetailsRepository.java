@@ -12,6 +12,5 @@ public interface UserDetailsRepository extends CrudRepository<UserDetails, Long>
     @Override
     public List<UserDetails> findAll();
 
-    public List<UserDetails> findByFirstNameAndLastName(String firstName, String lastName);
-
+    public List<UserDetails> findByCity_CityIdAndChefTrue(long cityID);
 }
