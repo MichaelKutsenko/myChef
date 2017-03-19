@@ -9,6 +9,10 @@ import java.util.UUID;
 
 public class EntityIdGenerator {
     public static Long random(){
-        return UUID.randomUUID().getLeastSignificantBits();
+        Long l = UUID.randomUUID().getLeastSignificantBits();
+        if(l < 0){
+            l *= (-1);
+        }
+        return l;
     }
 }

@@ -4,21 +4,17 @@
  */
 package com.myChef.rest;
 
-import api.AddUserRequest;
+import api.user.AddUserRequest;
 import api.GenericReply;
-import api.UserListReply;
-import com.myChef.JPA.ChefDetails;
+import api.user.UserListReply;
 import com.myChef.JPA.User;
-import com.myChef.services.UserMapper;
-import com.myChef.services.UserService;
+import com.myChef.services.user.UserMapper;
+import com.myChef.services.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  *
@@ -54,7 +50,7 @@ public class UserController {
         return reply;
     }
 
-    @RequestMapping(path="/users/chefs/{cityID}",  method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(path="/users/chefs/bycity/{cityID}",  method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public UserListReply getChefsByCity(@PathVariable long cityID ){
         UserListReply reply = new UserListReply();
 

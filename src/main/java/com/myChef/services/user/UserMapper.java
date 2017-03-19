@@ -1,8 +1,8 @@
-package com.myChef.services;
+package com.myChef.services.user;
 
 
-import api.JSONchef;
-import api.JSONuser;
+import api.user.JSONchef;
+import api.user.JSONuser;
 import com.myChef.JPA.*;
 import com.myChef.repository.CityRepository;
 import com.myChef.repository.UgroupRepository;
@@ -109,8 +109,7 @@ public class UserMapper {
         else {
             group = groupRepository.findOne(USER_GROUP_ID);
         }
-//        group.getUsers().add(user);
-//        user.getUgroups().add(group);
+
         user.addGroup(group);
 
         return user;

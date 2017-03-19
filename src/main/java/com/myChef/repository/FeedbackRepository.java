@@ -9,7 +9,8 @@ import java.util.List;
  * Created by Mocart
  */
 public interface FeedbackRepository extends CrudRepository<Feedback, Long> {
-    @Override
-    public List<Feedback> findAll();
+    public List<Feedback> findByToUser_UserId(long userID);
+
+    public List<Feedback> findByToUser_UserIdAndFromUser_userId(long toUserID, long fromUserID);
 
 }

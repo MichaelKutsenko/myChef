@@ -1,10 +1,11 @@
-package com.myChef.services;
+package com.myChef.services.user;
 
 import com.myChef.JPA.Ugroup;
 import com.myChef.JPA.User;
 import com.myChef.JPA.UserDetails;
 import com.myChef.repository.CityRepository;
 import com.myChef.repository.UgroupRepository;
+import com.myChef.services.user.UserService;
 import com.myChef.utils.EntityIdGenerator;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.security.acl.Group;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -69,7 +69,7 @@ public class UserServiceTest {
             names.add(user.getUserName());
         }
 
-        assertTrue("Can not find chefs by city's id.", names.contains("Oleg") && names.contains("Manya"));
+        assertTrue("Can not find chefs by geo's id.", names.contains("Oleg") && names.contains("Manya"));
     }
 
     @Test

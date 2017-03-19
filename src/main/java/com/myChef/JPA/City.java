@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "cities", schema = "my_chef_db")
-public class City {
+public class City extends GEOPoint{
     private long cityId;
     private String cityName;
     private boolean isCenter;

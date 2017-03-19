@@ -2,10 +2,9 @@
  * 
  * 
  */
-package com.myChef.services;
+package com.myChef.services.user;
 
 import com.myChef.JPA.ChefDetails;
-import com.myChef.JPA.Ugroup;
 import com.myChef.JPA.User;
 import com.myChef.JPA.UserDetails;
 import com.myChef.repository.ChefDetailsRepository;
@@ -81,11 +80,6 @@ private static final Logger logger =  LoggerFactory.getLogger(UserService.class)
         User user = userRepository.findOne(id);
         if (user != null) {
             logger.debug("Deleting users %s with id %s", user.getUserName(), user.getUserId());
-
-//            List<Ugroup> gl = user.getUgroups();
-//            for (Ugroup ugroup : gl) {
-//                user.deleteGroup(ugroup);
-//            }
 
             if (user.getChefDetails() != null) {
                 chefDetailsRepository.delete(id);

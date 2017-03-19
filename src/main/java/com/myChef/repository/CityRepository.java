@@ -11,4 +11,6 @@ import java.util.List;
 public interface CityRepository extends CrudRepository<City, Long> {
     @Override
     public List<City> findAll();
+
+    public List<City> findByRegion_RegionId(long regionID);
 }

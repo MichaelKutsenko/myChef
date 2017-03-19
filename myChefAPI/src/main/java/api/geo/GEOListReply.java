@@ -1,4 +1,6 @@
-package api;
+package api.geo;
+
+import api.GenericReply;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,7 +11,7 @@ import java.util.List;
  * Created by Mocart
  */
 @XmlRootElement
-public class UserListReply extends GenericReply{
+public class GEOListReply  extends GenericReply {
     @XmlElement(required=true)
-    public List<JSONuser> users = new ArrayList<>();
+    public List<JSONgeoPoint> geoPoints = new ArrayList<>();
 }

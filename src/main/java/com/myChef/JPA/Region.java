@@ -9,7 +9,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "regions", schema = "my_chef_db")
-public class Region {
+public class Region extends GEOPoint{
     private long regionId;
     private String regionName;
     private List<City> cities = new ArrayList<>();

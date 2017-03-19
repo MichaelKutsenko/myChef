@@ -1,17 +1,19 @@
 package com.myChef.JPA;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by Mocart on 07-Mar-17.
  */
 @Entity
 @Table(name = "messages", schema = "my_chef_db")
-public class Message {
+public class Message  implements Comparable<Message>{
     private long messageId;
     private String description;
     private UserDetails user;
     private Event event;
+    private Date date;
 
     @Id
     @Column(name = "message_id")
@@ -53,6 +55,15 @@ public class Message {
         this.event = event;
     }
 
+    @Column(name = "date")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,5 +82,10 @@ public class Message {
         int result = (int) (messageId ^ (messageId >>> 32));
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(Message o) {
+        return this.date.compareTo(o.getDate());
     }
 }

@@ -1,9 +1,9 @@
 package com.myChef.rest;
 
-import api.AddUserRequest;
-import api.JSONchef;
-import api.JSONuser;
-import api.UserListReply;
+import api.user.AddUserRequest;
+import api.user.JSONchef;
+import api.user.JSONuser;
+import api.user.UserListReply;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class UserControllerTest {
 
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -53,7 +52,7 @@ public class UserControllerTest {
 
     @Test
     public void getChefsByCity() throws Exception {
-        this.mockMvc.perform(get("/users/chefs/2"))
+        this.mockMvc.perform(get("/users/chefs/bycity/2"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Oleg")))
                 .andExpect(content().string(containsString("Manya")));
@@ -97,7 +96,7 @@ public class UserControllerTest {
 
         String reply = result.getResponse().getContentAsString();
         UserListReply ur = om.readValue(reply, UserListReply.class);
-        assertEquals("Return code in not 0", ur.retcode.longValue(), 0L);
+        assertEquals("Return code is not 0", ur.retcode.longValue(), 0L);
         if (ur.retcode == 0) {
             mockMvc.perform(get("/users/del/" + ur.users.get(0).id)
                     .accept(MediaType.APPLICATION_JSON_UTF8)

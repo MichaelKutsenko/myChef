@@ -11,4 +11,6 @@ import java.util.List;
 public interface MessageRepository extends CrudRepository<Message, Long> {
     @Override
     public List<Message> findAll();
+
+    public List<Message> findByEvent_EventId(long eventID);
 }

@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS user_details (
   last_name     VARCHAR(64) NOT NULL,
   phone         VARCHAR(64)          DEFAULT NULL,
   last_online   DATE                 DEFAULT NULL,
-  grade         DOUBLE               DEFAULT 0,
+  grade         DECIMAL               DEFAULT 0,
   grade_counter INT                  DEFAULT 0,
   is_chef       BOOLEAN     NOT NULL DEFAULT FALSE,
   PRIMARY KEY (user_id),
@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS feedbacks (
   to_user_id   BIGINT       NOT NULL,
   description  VARCHAR(500) NOT NULL,
   grade        INT          NOT NULL,
+  date        DATETIME         NOT NULL,
   PRIMARY KEY (feedback_id),
   FOREIGN KEY (from_user_id) REFERENCES user_details (user_id),
   FOREIGN KEY (to_user_id) REFERENCES user_details (user_id)
@@ -107,6 +108,7 @@ CREATE TABLE IF NOT EXISTS messages (
   user_id     BIGINT       NOT NULL,
   event_id    BIGINT       NOT NULL,
   description VARCHAR(500) NOT NULL,
+  date        DATETIME         NOT NULL,
   PRIMARY KEY (message_id),
   FOREIGN KEY (user_id) REFERENCES user_details (user_id),
   FOREIGN KEY (event_id) REFERENCES events (event_id)
