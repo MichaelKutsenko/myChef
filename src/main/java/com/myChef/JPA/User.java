@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
+
 /**
  * Created by Mocart on 07-Mar-17.
  */
@@ -133,7 +135,7 @@ public class User {
     @JoinTable(name = "user_group",
             joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "user_id")},
             inverseJoinColumns = { @JoinColumn(name = "group_id", referencedColumnName = "group_id")})
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToMany(cascade = CascadeType.DETACH, fetch=EAGER)
     public List<Ugroup> getUgroups() {
         return ugroups;
     }

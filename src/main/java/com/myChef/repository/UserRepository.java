@@ -11,4 +11,6 @@ import java.util.List;
 public interface UserRepository extends CrudRepository<User, Long> {
     @Override
     public List<User> findAll();
+
+    public User findByUserName(String username);
 }

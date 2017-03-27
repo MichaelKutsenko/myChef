@@ -19,9 +19,9 @@ INSERT INTO chef_details (user_id, price_per_hour, min_price, description) VALUE
 INSERT INTO chef_details (user_id, price_per_hour, min_price, description) VALUES(5, 120, 600, 'Hello, world' );
 
 #  INSERT ugroups
-INSERT INTO ugroups (group_id, group_name, description) VALUES(1,'Chef','Chef searches events');
-INSERT INTO ugroups (group_id, group_name, description) VALUES(2,'User','User creates event and looks throw chef forms');
-INSERT INTO ugroups (group_id, group_name, description) VALUES(99,'Admin','Admin does administrative work ');
+INSERT INTO ugroups (group_id, group_name, description) VALUES(1,'CHEF','Chef searches events');
+INSERT INTO ugroups (group_id, group_name, description) VALUES(2,'USER','User creates event and looks throw chef forms');
+INSERT INTO ugroups (group_id, group_name, description) VALUES(99,'ADMIN','Admin does administrative work ');
 
 #  INSERT events
 INSERT INTO events (event_id, user_id, city_id, event_date, description) VALUES(1, 1, 15, '2017-10-23', 'big party');

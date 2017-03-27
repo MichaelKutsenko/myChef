@@ -4,7 +4,6 @@ import api.feedback.AddFeedbackReply;
 import api.feedback.FeedbackListReply;
 import com.myChef.JPA.Feedback;
 import com.myChef.JPA.User;
-import com.myChef.JPA.UserDetails;
 import com.myChef.services.feedback.FeedbackMapper;
 import com.myChef.services.feedback.FeedbackService;
 import com.myChef.services.user.UserService;
@@ -66,23 +65,16 @@ public class FeedbackController {
                 }
                 averageGrade = temp/counter;
 
-//                user = userService.getUserById(req.feedback.toUserID);
-//                double userGrade = user.getUserDetails().getGrade();
-//                int userGradeCounter = user.getUserDetails().getGradeCounter();
-
                 userGrade = (userGrade*userGradeCounter - averageGrade + ((temp +  grade)/(counter+1)))/userGradeCounter;
                 user.getUserDetails().setGrade(userGrade);
             }
             else {
-//                user = userService.getUserById(req.feedback.toUserID);
-//                double userGrade = user.getUserDetails().getGrade();
-//                int userGradeCounter = user.getUserDetails().getGradeCounter();
 
                 userGrade = (userGrade*userGradeCounter + grade)/(userGradeCounter + 1);
                 user.getUserDetails().setGrade(userGrade);
                 user.getUserDetails().setGradeCounter(userGradeCounter + 1);
             }
-//            user.getUserDetails().setGradeCounter(userGradeCounter + 1);
+
             userService.updateUser(user);
         }catch(Exception e){
             rep.retcode = -1;
