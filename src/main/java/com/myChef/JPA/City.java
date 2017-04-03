@@ -1,6 +1,7 @@
 package com.myChef.JPA;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -9,7 +10,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "cities", schema = "my_chef_db")
-public class City extends GEOPoint{
+public class City extends GEOPoint  implements Serializable {
     private long cityId;
     private String cityName;
     private boolean isCenter;

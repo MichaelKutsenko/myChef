@@ -1,6 +1,7 @@
 package com.myChef.JPA;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,21 +12,14 @@ import static javax.persistence.FetchType.EAGER;
  */
 @Entity
 @Table(name = "users", schema = "my_chef_db")
-public class User {
+public class User implements Serializable {
     private long userId;
     private String userName;
     private String email;
     private String pswrdHash;
     private UserDetails userDetails;
-//    private boolean isChef;
     private ChefDetails chefDetails;
     private List<Ugroup> ugroups = new ArrayList<>();
-
-
-//    private List<Event> events;
-//    private List<Feedback> feedbacksFromUser;
-//    private List<Feedback> feedbacksToUser;
-//    private List<Message> messages;
 
     @Id
     @Column(name = "user_id")
@@ -67,17 +61,6 @@ public class User {
         this.pswrdHash = pswrdHash;
     }
 
-//    @Basic
-//    @Column(name = "is_chef")
-//    public boolean isChef() {
-//        return isChef;
-//    }
-//
-//
-//    public void setChef(boolean chef) {
-//        isChef = chef;
-//    }
-
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     public ChefDetails getChefDetails() {
         return chefDetails;
@@ -86,42 +69,6 @@ public class User {
     public void setChefDetails(ChefDetails chefDetails) {
         this.chefDetails = chefDetails;
     }
-
-//    @OneToMany(mappedBy = "user")
-//    public List<Event> getEvents() {
-//        return events;
-//    }
-//
-//    public void setEvents(List<Event> events) {
-//        this.events = events;
-//    }
-//
-//    @OneToMany(mappedBy = "fromUser")
-//    public List<Feedback> getFeedbacksFromUser() {
-//        return feedbacksFromUser;
-//    }
-//
-//    public void setFeedbacksFromUser(List<Feedback> feedbacksFromUser) {
-//        this.feedbacksFromUser = feedbacksFromUser;
-//    }
-//
-//    @OneToMany(mappedBy = "toUser")
-//    public List<Feedback> getFeedbacksToUser() {
-//        return feedbacksToUser;
-//    }
-//
-//    public void setFeedbacksToUser(List<Feedback> feedbacksToUser) {
-//        this.feedbacksToUser = feedbacksToUser;
-//    }
-//
-//    @OneToMany(mappedBy = "user")
-//    public List<Message> getMessages() {
-//        return messages;
-//    }
-//
-//    public void setMessages(List<Message> messages) {
-//        this.messages = messages;
-//    }
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     public UserDetails getUserDetails() {
@@ -152,7 +99,6 @@ public class User {
         User user = (User) o;
 
         if (userId != user.userId) return false;
-//        if (isChef != user.isChef) return false;
         if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (pswrdHash != null ? !pswrdHash.equals(user.pswrdHash) : user.pswrdHash != null) return false;
@@ -166,7 +112,6 @@ public class User {
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (pswrdHash != null ? pswrdHash.hashCode() : 0);
-//        result = 31 * result + (isChef ? 1 : 0);
         return result;
     }
 

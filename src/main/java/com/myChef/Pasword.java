@@ -1,6 +1,5 @@
 package com.myChef;
 
-import com.myChef.security.Authority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.codec.Hex;
 

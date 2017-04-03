@@ -1,6 +1,7 @@
 package com.myChef.JPA;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Ugroups", schema = "my_chef_db")
-public class Ugroup {
+public class Ugroup  implements Serializable {
     private long groupId;
     private String groupName;
     private String description;

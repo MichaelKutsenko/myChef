@@ -7,12 +7,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *
- *
+ * Created by Mocart
  */
 @Configuration
 public class HazelcastConfiguration {
-    private static int TEN_MINUES = 10*60;
+    private static int TEN_MINUES = 10*60*1000;
     @Bean
     public Config config() {
         return new Config()

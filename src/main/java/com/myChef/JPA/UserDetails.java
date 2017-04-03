@@ -1,6 +1,7 @@
 package com.myChef.JPA;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "user_details", schema = "my_chef_db")
-public class UserDetails {
+public class UserDetails  implements Serializable {
     private long userId;
     private String firstName;
     private String lastName;

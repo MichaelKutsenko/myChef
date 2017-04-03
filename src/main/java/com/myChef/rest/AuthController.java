@@ -1,7 +1,4 @@
-/*
- * 
- * 
- */
+
 package com.myChef.rest;
 
 import api.login.LoginReply;
@@ -22,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author al
+ * Created by Mocart
  */
 @RestController
 public class AuthController {
@@ -40,6 +37,7 @@ private static final Logger logger =  LoggerFactory.getLogger(AuthController.cla
         LoginReply rep = new LoginReply();
         User user;
         user = userService.authUser(req.login, req.password);
+
         if (user != null) {
             String token = tokenProvider.newToken();
             tokenProvider.put(token, new AuthUser(user));

@@ -2,6 +2,7 @@ package com.myChef.JPA;
 
 import javax.persistence.*;
 //import java.sql.Date;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "events", schema = "my_chef_db")
-public class Event {
+public class Event  implements Serializable {
     private long eventId;
     private Date eventDate;
     private String description;

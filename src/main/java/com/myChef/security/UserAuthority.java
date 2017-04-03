@@ -6,19 +6,18 @@ import org.springframework.security.core.GrantedAuthority;
  * Created by Mocart
  */
 public class UserAuthority implements GrantedAuthority {
-    private String autority;
-
+    private String authority;
 
     public UserAuthority(Authority groupName) {
-        autority = groupName.name();
+        authority = groupName.name();
     }
 
     public UserAuthority(String groupName) {
-        autority = groupName;
+        authority = groupName;
     }
 
     @Override
     public String getAuthority() {
-        return autority;
+        return authority;
     }
 }

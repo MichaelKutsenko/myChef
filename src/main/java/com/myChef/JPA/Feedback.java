@@ -1,6 +1,7 @@
 package com.myChef.JPA;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "feedbacks", schema = "my_chef_db")
-public class Feedback   implements Comparable<Feedback>{
+public class Feedback   implements Comparable<Feedback>, Serializable {
     private long feedbackId;
     private String description;
     private int grade;

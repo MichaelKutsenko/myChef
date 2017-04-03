@@ -1,6 +1,7 @@
 package com.myChef.JPA;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "messages", schema = "my_chef_db")
-public class Message  implements Comparable<Message>{
+public class Message  implements Comparable<Message>, Serializable{
     private long messageId;
     private String description;
     private UserDetails user;

@@ -1,7 +1,3 @@
-/*
- * 
- * 
- */
 package com.myChef.security;
 
 import org.slf4j.Logger;
@@ -20,8 +16,7 @@ import java.io.IOException;
 
 
 /**
- *
- * @author al
+ * Created by Mocart
  */
 public class TokenSecurityFilter extends  OncePerRequestFilter{
     public final String AUTH_HTTP_HEADER ="X-Authorization";
@@ -33,19 +28,23 @@ public class TokenSecurityFilter extends  OncePerRequestFilter{
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authToken = request.getHeader(AUTH_HTTP_HEADER);
-        //if(SecurityContextHolder.getContext().getAuthentication() == null)
-        AuthUser u = tokenPtovider.get(authToken);
-        if(u!=null){
-           logger.debug("Token found, it belongs to: "+u.getUsername());
+
+        if (authToken == null) {
+            authToken = request.getHeader(AUTH_HTTP_HEADER.toLowerCase());
+        }
+
+            AuthUser u = tokenPtovider.get(authToken);
+            if(u!=null){
+                logger.debug("Token found, it belongs to: "+u.getUsername());
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(u, null, u.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 logger.info("authenticated user " + u.getUsername() + ", setting security context");
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-         
-        }else{
-                logger.info("authentication failed, may be token is expired");
-        }
-        //we must call all filters in the chain
+
+            }else{
+                logger.info("authentication failed, may be token is expired. Token: " + authToken);
+            }
+
         filterChain.doFilter(request, response);        
     }
 

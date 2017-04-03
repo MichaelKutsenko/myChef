@@ -1,13 +1,14 @@
 package com.myChef.JPA;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Mocart on 07-Mar-17.
  */
 @Entity
 @Table(name = "chef_details", schema = "my_chef_db")
-public class ChefDetails {
+public class ChefDetails  implements Serializable {
     private long userId;
     private int pricePerHour;
     private int minPrice;

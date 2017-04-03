@@ -1,6 +1,7 @@
 package com.myChef.JPA;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "regions", schema = "my_chef_db")
-public class Region extends GEOPoint{
+public class Region extends GEOPoint implements Serializable{
     private long regionId;
     private String regionName;
     private List<City> cities = new ArrayList<>();

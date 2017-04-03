@@ -1,7 +1,3 @@
-/*
- * 
- * 
- */
 package com.myChef.rest;
 
 import api.user.AddUserRequest;
@@ -81,6 +77,7 @@ public class UserController {
             logger.error("Error adding user. Expetion: "+e.getMessage(),e);
         }
         return rep;
+
     }
 
     @RequestMapping(path="/users/update",  method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,

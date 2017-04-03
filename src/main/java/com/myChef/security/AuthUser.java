@@ -19,7 +19,6 @@ public class AuthUser implements UserDetails {
     public AuthUser(User user){
         this.user = user;
 
-//        authorities.add(new UserAuthority("USER"));
         List<Ugroup> groups = user.getUgroups();
 
         for (Ugroup group : groups) {
@@ -27,7 +26,7 @@ public class AuthUser implements UserDetails {
         }
     }
 
-    public User getAppUser(){
+    public User getUser(){
         return user;
     }
 
